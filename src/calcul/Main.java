@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
         // калькулятор
         double otvet;
-        String znak = "";
-        double a = 0;
-        double b = 0;
+        String znak;
+        double a ;
+        double b ;
         System.out.println("Введите число");
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -33,31 +33,21 @@ public class Main {
         }
         System.out.println("Что вы хотите сделать :'+','-','*','/'");
         znak = scanner.next();
-        switch (znak) {
-            case "+":
-                otvet = a + b;
-                break;
-            case "-":
-                otvet = a - b;
-                break;
-            case "*":
-                otvet = a * b;
-                break;
-            case "/":
-                otvet = a / b;
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + znak);
-        }
+        otvet = switch (znak) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
+            case "/" -> a / b;
+            default -> throw new IllegalStateException("Unexpected value: " + znak);
+        };
         System.out.println("Продолжить Y. Ответ N");
         String yN = scanner.next();
         switch (yN.toUpperCase(Locale.ROOT)) {
-            case "Y":
-                System.out.println("Что вы хотите сделать :'+','-','*','/'");
-                break;
-            case "N":
+            case "Y" -> System.out.println("Что вы хотите сделать :'+','-','*','/'");
+            case "N" -> {
                 System.out.println("Ответ " + otvet);
                 return;
+            }
         }
         znak = scanner.next();
         System.out.println("Введите число");
@@ -86,7 +76,6 @@ public class Main {
                 break;
             case "N":
                 System.out.println("Ответ " + otvet);
-                return;
         }
     }
 }
